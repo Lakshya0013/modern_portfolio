@@ -7,7 +7,7 @@
     "sass": "node-sass -w scss/ -o dist/css/ --recursive"
   },
   "keywords": [],
-  "author": "",
+  "author": "Lakshya Solath",
   "license": "ISC",
   "dependencies": {
     "node-sass": "^5.0.0"

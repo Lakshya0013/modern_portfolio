@@ -1,5 +1,300 @@
+
 $primary-color: #444;
-body{
-    background: $primary-color;
-    color: #fff;
+$secondary-color:#eece1a;
+$show-home-image:true;
+$home-image:url(../img/back3.jpg);
+$background-opacity:0.9;
+@mixin easeOut {
+    transition: all 0.7s ease-out;
 }
+@mixin background {
+    @if $show-home-image{
+        &#bg-img{
+            background:$home-image;
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            width: 100%;
+    height: 100%;
+    // margin: 0;
+    // padding: 0;
+    // max-height: 100%;
+    // background-size:100% 100%;
+    // background-repeat: no-repeat;
+
+            //OVERLAY:
+            &::after{
+                content: '';
+                position: absolute;
+                top:0;
+                right:0;
+                width:100%;
+                height:100%;
+                background:rgba($primary-color,0.88);
+                z-index: -1;
+                
+            }
+        }
+    }
+    
+}
+body{
+    @include background;
+    background: $primary-color;
+    color: #eee;
+    height: 100% ;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    line-height: 1.5;
+    }
+
+    a{
+      color:#eee;
+      text-decoration: none;
+    }
+    *{
+      box-sizing: border-box;
+        
+    }
+    //headings:
+  
+    h1,
+    h2,
+    h3{
+      margin: 0;
+      font-weight: 400;
+      &.lg-heading {
+          padding-top:4rem ;
+        font-size: 6rem;
+            }
+            #sm-heading{
+                display: inline-block;
+              font-size:1.2rem;
+              padding: 0.4rem 1rem;
+              background: rgba(lighten($primary-color, 2),0.5);
+              margin-bottom: 1rem;
+            }
+    }
+
+    header{
+            position: fixed;
+            z-index: 2;
+            width: 100%;
+         }
+
+    #solath{
+             color: $secondary-color;
+         }
+
+    main{
+        
+             padding:4rem;
+             min-height: calc(100vh-50px);
+             .icons{
+                 margin-top: 1rem;
+                 a{
+                     font-size: 1.5rem;
+                     padding: 0.4rem;
+                     &:hover{
+                         color:$secondary-color;
+                         transition: all 0.7s ease-out;
+                     }
+                 }
+             }
+             &.home{
+                 overflow: hidden;
+                 margin-top: 20vh;
+             }
+             
+             
+    }
+
+    .text-secondary{
+        color: $secondary-color;
+    }
+
+    //Media Queries
+
+    @mixin mediaSm{
+    @media screen and(max: width 500px){
+        @content;
+    }
+}
+    @mixin mediaMd{
+        @media screen and(min: width 501px) and (max: width 768px) {
+            @content;
+        }
+    }
+    @mixin mediaLg{
+        @media screen and(min: width 769px) and (max: width 1170px) {
+
+            @content;
+        }
+    }
+    @mixin mediaXl{
+        @media screen and(min: width 1171px){
+            @content;
+        }
+    }
+ @import 'menu';
+ @import 'mobile';
+
+//ABOUT PAGE
+
+.about-info{
+
+    display: grid;
+    grid-template-areas: 
+            "a b b"
+            "c d e";
+     grid-template-columns: 1fr 1fr 1fr;
+    //  grid-template-areas:
+    //  "bioImg bio bio "
+    //  "job job job";
+     grid-gap: 30px;
+     width: 100%;
+     height: calc(100vh-60px);
+    // height: 100%;
+
+     .bio-image{
+         grid-area: a;
+         width: 250px;
+            height: 250px;
+            background: url('https://image.shutterstock.com/image-photo/headshot-guy-wearing-spectacles-looking-260nw-1450012283.jpg');
+            border-radius: 50%;
+            border: solid 4px $secondary-color;
+            background-repeat: no-repeat;
+            background-position: center;
+            position: absolute;
+           
+         
+     }
+     .bio{
+         grid-area: b;
+         font-size: 1.5rem;
+         #BIO{
+             color: $secondary-color;
+         }
+
+     }
+     .job-1{
+         
+         grid-area: c;
+     }
+     .job-2{
+        grid-area: d;
+    }
+    .job-3{
+        grid-area: e;
+    }
+    .job{
+        background: lighten($primary-color, 5);
+        padding: 1.0rem;
+        border-bottom: $secondary-color 5px solid;
+        border-radius: 10%;
+        h3{
+            padding: 0.5rem;
+            color: $secondary-color;
+        }
+    }
+    
+}
+
+    //Work/Projects
+
+    .projects{
+        display:grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 2rem;
+        img{
+            width: 100%;
+            border: 3px #fff solid;
+            &:hover{
+                opacity: 0.5;
+                border-color: $secondary-color;
+                @include easeOut;
+            }
+        }
+    }
+
+    //Button Styles
+
+    .btn{
+        display: block;
+        padding: 0.5rem 1rem;
+        border:0;
+        margin-bottom: 0.3rem;
+        &:hover{
+            background: $secondary-color;
+            color: $primary-color;
+            }
+    }
+
+    
+
+    
+
+    .btn-dark{
+        @extend .btn;
+        background: darken($primary-color, 40 );
+        color: #fff;
+    }
+    .btn-light{
+        @extend .btn;
+        background: lighten($primary-color,40 );
+        color: #333;
+    }
+
+
+    // Contact Page
+
+    .boxes{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        align-items: center;
+        margin-top: 1rem;
+
+        div{
+            font-size: 2rem;
+            border: 3px #fff solid;
+            padding: 1.5rem 2.5rem;
+            margin-bottom: 3rem;
+            @include easeOut();
+            &:hover{
+                padding: 0.5rem 1.5rem;
+                background: $secondary-color;
+                color: $primary-color;
+                span{
+                    color:#000;
+                }
+            }
+
+        }
+       
+
+    }
+
+
+
+#main-footer{
+    text-align: center;
+    height: 50px;
+    width: 100vw;
+    background: darken($primary-color, 3);
+    padding: 1rem;
+    
+}
+
+
+
+
+  
+  
+  
+    
+  
+    
+  
